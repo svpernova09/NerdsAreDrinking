@@ -13,6 +13,6 @@ service nginx restart
 service php5-fpm reload
 /usr/local/bin/composer self-update
 echo "" >> /home/vagrant/.bashrc
-echo "PATH=$PATH:/home/vagrant/hackmemphis.dev/vendor/bin" >> /home/vagrant/.bashrc
+echo "PATH=$PATH:/home/vagrant/nerds.dev/vendor/bin" >> /home/vagrant/.bashrc
 echo "export PATH" >> /home/vagrant/.bashrc
 echo Done!
