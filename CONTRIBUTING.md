@@ -6,7 +6,7 @@ Please branch and issue pull requests to the dev branch to contribute.
 
 ## Getting Started
 
-* Add ```192.168.99.11    nerds.dev``` to your hosts file
+* Add ```192.168.99.12    nerds.dev``` to your hosts file
 
 * Clone this repository
 * ```cd /path/to/nerdsaredrinking```
