@@ -1,12 +1,12 @@
-[![Build Status](https://travis-ci.org/HackMemphis/HACKmemphis.com.svg?branch=master)](https://travis-ci.org/HackMemphis/HACKmemphis.com)
+[![Build Status](https://travis-ci.org/svpernova09/NerdsAreDrinking.svg?branch=master)](https://travis-ci.org/HackMemphis/HACKmemphis.com)
 
-## HACKmemphis.com
+## Nerds Are Drinking
 
-Website for [HACKmemphis](http://www.HACKmemphis.com).
+Application to retweet when one of the NerdsDrinking.com hosts checks into a beer.
 
 ## About
 
-HACKmemphis.com is the website for the HACKmemphis hackathon event held yearly in Memphis, TN. In the spirit of hackathons we have open sourced our website for you to hack on, play with, and potentially learn something. 
+NerdsDrinking.com is a Podcast about three IT type guys discussing technology as it relates to the Memphis, TN area. 
 
 Find a bug? Open a Github issue to let us know!
 
