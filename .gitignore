@@ -11,3 +11,4 @@ Thumbs.db
 tests/_output/*
 !.env.testing.php
 !.env.local.php
+tests/_output/*
