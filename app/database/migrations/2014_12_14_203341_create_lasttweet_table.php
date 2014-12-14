@@ -12,7 +12,7 @@ class CreateLasttweetTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('lasttweet', function(Blueprint $table)
+		Schema::create('last_tweets', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->text('since_id');
@@ -28,7 +28,7 @@ class CreateLasttweetTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('lasttweet');
+		Schema::drop('last_tweets');
 	}
 
 }
