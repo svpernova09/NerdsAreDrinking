@@ -36,7 +36,7 @@ $env = $app->detectEnvironment(function() use ($app)
 		}
 
 
-		if (end($folder) == 'drink.nerdsdrinking.com/')
+		if (end($folder) == 'drink.nerdsdrinking.com')
 		{
 
 			return 'production';
