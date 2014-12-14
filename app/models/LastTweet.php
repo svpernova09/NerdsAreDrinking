@@ -2,6 +2,7 @@
 
 class LastTweet extends \Eloquent {
 	protected $fillable = [
-		'since_id'
+		'since_id',
+		'name'
 	];
 }
