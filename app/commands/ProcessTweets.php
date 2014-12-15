@@ -56,8 +56,6 @@ class ProcessTweets extends Command {
 				$this->parseTweets($tweet);
 			}
 		}
-
-
 	}
 
 	/**
