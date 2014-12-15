@@ -46,7 +46,9 @@ class ProcessTweets extends Command {
 			if (count($tweets) > 0)
 			{
 				// update the since_id with the latest tweet in $tweets
-				$this->updateSince($tweets['0']->id, $nerd->name);
+				if (!$this->option('test')) {
+					$this->updateSince($tweets['0']->id, $nerd->name);
+				}
 			}
 
 			foreach ($tweets as $tweet)
@@ -66,7 +68,7 @@ class ProcessTweets extends Command {
 	protected function getArguments()
 	{
 		return array(
-//			array('example', InputArgument::REQUIRED, 'An example argument.'),
+//			array('test', InputArgument::OPTIONAL, 'Run in test mode. Does not update database. Does not tweet'),
 		);
 	}
 
@@ -78,7 +80,7 @@ class ProcessTweets extends Command {
 	protected function getOptions()
 	{
 		return array(
-//			array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
+			array('test', 't', InputOption::VALUE_OPTIONAL, 'If present, run test mode', 'false'),
 		);
 	}
 
@@ -137,7 +139,7 @@ class ProcessTweets extends Command {
 
 	public function parseTweets($tweet)
 	{
-		if (strpos($tweet->text,'Drinking a') !== false &&
+		if (strpos($tweet->text, 'Drinking a') !== false &&
 				strpos($tweet->source, 'untappd') !== false)
 			{
 				$user = '@' . $tweet->user->screen_name;
@@ -146,9 +148,18 @@ class ProcessTweets extends Command {
 				$status =  preg_replace($regex, ' ', $status);
 				$status = str_replace(' —  ', '', $status);
 
-				$this->postTweet($status, $tweet->id);
+				if (!$this->option('test'))
+				{
+					$this->postTweet($status, $tweet->id);
+				}
+
+				if ($this->option('test'))
+				{
+					$this->info('We should have tweeted: ' . $status);
+				}
 			}
 	}
+
 	public function postTweet($status, $tweet_id)
 	{
 		$url = 'https://api.twitter.com/1.1/statuses/update.json';
