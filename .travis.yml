@@ -15,6 +15,7 @@ before_script:
 script:
   - mkdir -p build/logs
   - ./vendor/bin/codecept run
-#  - phpunit --coverage-clover build/logs/clover.xml
+  - phpunit --coverage-clover build/logs/clover.xml
+  - CODECLIMATE_REPO_TOKEN=a23ebf06cda88ff29c909a6658d5e601cc55c5427f1e7740641b15c6bb2a0615 ./vendor/bin/test-reporter
 #after_script:
 # - vendor/bin/coveralls -v
