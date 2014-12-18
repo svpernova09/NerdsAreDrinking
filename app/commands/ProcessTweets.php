@@ -46,7 +46,7 @@ class ProcessTweets extends Command {
 			if (count($tweets) > 0)
 			{
 				// update the since_id with the latest tweet in $tweets
-				if (!$this->option('test')) {
+				if ($this->option('test') == 'false') {
 					$this->updateSince($tweets['0']->id, $nerd->name);
 				}
 			}
@@ -146,12 +146,12 @@ class ProcessTweets extends Command {
 				$status =  preg_replace($regex, ' ', $status);
 				$status = str_replace(' —  ', '', $status);
 
-				if (!$this->option('test'))
+				if ($this->option('test') == 'false')
 				{
 					$this->postTweet($status, $tweet->id);
 				}
 
-				if ($this->option('test'))
+				if ($this->option('test') == 'true')
 				{
 					$this->info('We should have tweeted: ' . $status);
 				}
