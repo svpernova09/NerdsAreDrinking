@@ -146,27 +146,28 @@ class ProcessTweets extends Command {
 				$status =  preg_replace($regex, ' ', $status);
 				$status = str_replace(' —  ', '', $status);
 
-				if ($this->option('test') == 'false')
-				{
-					$this->postTweet($status, $tweet->id);
-				}
-
-				if ($this->option('test') == 'true')
-				{
-					$this->info('We should have tweeted: ' . $status);
-				}
+				$this->postTweet($status, $tweet->id);
 			}
 	}
 
 	public function postTweet($status, $tweet_id)
 	{
 		$url = 'https://api.twitter.com/1.1/statuses/update.json';
-		$postFields['status'] = json_encode($status);
+		$postFields['status'] = $status;
 		$postFields['in_reply_to_status_id'] = $tweet_id;
-
+		$this->info($postFields['status']);
 		$tweet = new TwitterAPIExchange($this->getSettings());
-		$response = $tweet->setPostfields($postFields)
-		                  ->buildOauth($url, 'POST')
-		                  ->performRequest();
+
+		if ($this->option('test') == 'false')
+		{
+			$response = $tweet->setPostfields($postFields)
+			                  ->buildOauth($url, 'POST')
+			                  ->performRequest();
+		}
+
+		if ($this->option('test') == 'true')
+		{
+			$this->info('We should have tweeted: ' . $status);
+		}
 	}
 }
