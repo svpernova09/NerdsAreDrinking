@@ -141,7 +141,7 @@ class ProcessTweets extends Command {
 				strpos($tweet->source, 'untappd') !== false)
 			{
 				$user = '@' . $tweet->user->screen_name;
-				$status = '#NerdsDrinking RT: ' . $user . ' ' . $tweet->text;
+				$status = '#NerdsDrinking RT ' . $user . ' ' . $tweet->text;
 				$regex = "@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?).*$)@";
 				$status =  preg_replace($regex, ' ', $status);
 				$status = str_replace(' —  ', '', $status);
