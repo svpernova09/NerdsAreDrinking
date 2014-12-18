@@ -141,10 +141,11 @@ class ProcessTweets extends Command {
 				strpos($tweet->source, 'untappd') !== false)
 			{
 				$user = '@' . $tweet->user->screen_name;
-				$status = '#NerdsDrinking RT: ' . $user . ' ' . $tweet->text;
+				$status = '#NerdsDrinking RT ' . $user . ' ' . $tweet->text;
 				$regex = "@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?).*$)@";
 				$status =  preg_replace($regex, ' ', $status);
-				$status = str_replace(' —  ', '', $status);
+				$status = str_replace('-', '', $status);
+				$status = str_replace('—', '', $status);
 
 				$this->postTweet($status, $tweet->id);
 			}
@@ -155,7 +156,7 @@ class ProcessTweets extends Command {
 		$url = 'https://api.twitter.com/1.1/statuses/update.json';
 		$postFields['status'] = $status;
 		$postFields['in_reply_to_status_id'] = $tweet_id;
-		$this->info($postFields['status']);
+
 		$tweet = new TwitterAPIExchange($this->getSettings());
 
 		if ($this->option('test') == 'false')
