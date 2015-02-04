@@ -137,7 +137,6 @@ class ProcessTweets extends Command {
 
 	public function parseTweets($tweet)
 	{
-		dd($tweet);
 		if (strpos($tweet->text, 'Drinking a') !== false &&
 				strpos($tweet->source, 'untappd') !== false)
 			{
