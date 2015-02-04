@@ -1,0 +1,20 @@
+language: php
+php:
+  - "5.5"
+  - "5.6"
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y phantomjs screen
+before_script:
+  - mysql -e 'create database homestead;'
+  - mysql -e "GRANT ALL PRIVILEGES ON homestead.* TO 'homestead'@'%' IDENTIFIED BY 'secret'" -uroot
+  - screen -S server -d -m phantomjs --webdriver=4444
+  - "composer self-update"
+  - "composer install --dev --no-interaction"
+  - php artisan migrate
+script:
+  - mkdir -p build/logs
+  - ./vendor/bin/codecept run
+  - SECRET_KEY=mHu5hXL0NzteWE4wVlbJsah55o2LRpgF
+#after_script:
+# - vendor/bin/coveralls -v
