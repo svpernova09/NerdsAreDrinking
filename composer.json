@@ -6,17 +6,15 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-		"doctrine/dbal": "dev-master",
-		"guzzlehttp/guzzle": "4.*",
 		"j7mbo/twitter-api-php": "dev-master"
 	},
 	"require-dev": {
-		"fzaninotto/faker": "dev-master",
 		"way/generators": "~3.0",
 		"barryvdh/laravel-ide-helper": "dev-master",
 		"codeception/codeception":"~2.0",
 		"barryvdh/laravel-debugbar": "1.x",
-		"codeclimate/php-test-reporter": "dev-master"
+		"codeclimate/php-test-reporter": "dev-master",
+	  	"janhenkgerritsen/codeception-laravel5": "~1.0"
 	},
 	"autoload": {
 		"classmap": [
