@@ -10,7 +10,7 @@ modules:
         - WebDriver
         - AcceptanceHelper
         - Db
-        - Laravel4
+        - Laravel5
     config:
         WebDriver:
             url: 'http://localhost/'
@@ -20,5 +20,5 @@ modules:
               webStorageEnabled: true
         Db:
             cleanup: true
-        Laravel4:
+        Laravel5:
             environment: local
