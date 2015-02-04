@@ -1,5 +1,10 @@
 /vendor
 /node_modules
 .env
-.idea/
+.DS_Store
+Thumbs.db
+.idea
 .vagrant/
+tests/_output/*
+!.env.testing.php
+tests/_output/*
