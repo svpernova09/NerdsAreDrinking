@@ -11,6 +11,8 @@ keys:
 folders:
     - map: .
       to: /home/vagrant/nerds.dev
+    - map: .
+      to: /vagrant
 
 sites:
     - map: hackmemphis.dev
