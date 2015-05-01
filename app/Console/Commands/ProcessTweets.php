@@ -20,11 +20,9 @@ class ProcessTweets extends Command {
 	 */
 	protected $description = 'Process Tweets Looking for beers.';
 
-	/**
-	 * Create a new command instance.
-	 *
-	 * @return void
-	 */
+    /**
+     *
+     */
 	public function __construct()
 	{
 		parent::__construct();
@@ -46,7 +44,7 @@ class ProcessTweets extends Command {
 			if (count($tweets) > 0)
 			{
 				// update the since_id with the latest tweet in $tweets
-				if ($this->option('test') == 'false') {
+				if ($this->argument('test') == 'false') {
 					$this->updateSince($tweets['0']->id, $nerd->name);
 				}
 			}
@@ -66,7 +64,7 @@ class ProcessTweets extends Command {
 	protected function getArguments()
 	{
 		return array(
-//			array('test', InputArgument::OPTIONAL, 'Run in test mode. Does not update database. Does not tweet'),
+			array('test', InputArgument::OPTIONAL, 'Run in test mode. Does not update database. Does not tweet'),
 		);
 	}
 
@@ -78,7 +76,7 @@ class ProcessTweets extends Command {
 	protected function getOptions()
 	{
 		return array(
-			array('test', 't', InputOption::VALUE_OPTIONAL, 'If present, run test mode', 'false'),
+//			array('test', 't', InputOption::VALUE_OPTIONAL, 'If present, run test mode', 'false'),
 		);
 	}
 
@@ -159,14 +157,15 @@ class ProcessTweets extends Command {
 
 		$tweet = new TwitterAPIExchange($this->getSettings());
 
-		if ($this->option('test') == 'false')
+		if ($this->argument('test') == 'false')
 		{
 			$response = $tweet->setPostfields($postFields)
+			                  ->buildOauth($url, 'POST')
 			                  ->buildOauth($url, 'POST')
 			                  ->performRequest();
 		}
 
-		if ($this->option('test') == 'true')
+		if ($this->argument('test'))
 		{
 			$this->info('We should have tweeted: ' . $status);
 		}
