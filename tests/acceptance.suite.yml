@@ -10,6 +10,7 @@ modules:
         - WebDriver
         - AcceptanceHelper
         - Db
+        - Cli
     config:
         WebDriver:
             url: 'http://localhost/'
