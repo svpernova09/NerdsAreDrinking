@@ -161,7 +161,6 @@ class ProcessTweets extends Command {
 		{
 			$response = $tweet->setPostfields($postFields)
 			                  ->buildOauth($url, 'POST')
-			                  ->buildOauth($url, 'POST')
 			                  ->performRequest();
 		}
 
