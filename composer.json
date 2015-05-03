@@ -6,7 +6,8 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-		"j7mbo/twitter-api-php": "dev-master"
+		"j7mbo/twitter-api-php": "dev-master",
+        "google/apiclient": "1.0.*@beta"
 	},
 	"require-dev": {
 		"way/generators": "~3.0",
