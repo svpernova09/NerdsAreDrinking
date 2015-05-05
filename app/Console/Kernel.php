@@ -12,7 +12,8 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected $commands = [
 		'App\Console\Commands\Inspire',
-		'ProcessTweets'
+		'ProcessTweets',
+        'CalendarUpdate'
 	];
 
 	/**
@@ -23,8 +24,7 @@ class Kernel extends ConsoleKernel {
 	 */
 	protected function schedule(Schedule $schedule)
 	{
-		$schedule->command('inspire')
-				 ->hourly();
+        $schedule->command('CalendarUpdate')->hourly();
 	}
 
 }
