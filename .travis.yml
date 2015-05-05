@@ -14,8 +14,8 @@ before_script:
   - "composer install --dev --no-interaction"
   - php artisan migrate --force
 script:
-  - mkdir -p build/logs
+#  - mkdir -p build/logs
   - ./vendor/bin/codecept run
-  - SECRET_KEY=mHu5hXL0NzteWE4wVlbJsah55o2LRpgF
+#  - SECRET_KEY=mHu5hXL0NzteWE4wVlbJsah55o2LRpgF
 #after_script:
 # - vendor/bin/coveralls -v
