@@ -15,7 +15,7 @@ before_script:
   - php artisan migrate --force
 script:
 #  - mkdir -p build/logs
-  - ./vendor/bin/codecept run
+  - ./vendor/bin/codecept run -vvv
 #  - SECRET_KEY=mHu5hXL0NzteWE4wVlbJsah55o2LRpgF
 #after_script:
 # - vendor/bin/coveralls -v
