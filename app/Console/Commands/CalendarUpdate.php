@@ -46,7 +46,6 @@ class CalendarUpdate extends Command {
         // Only update the events if it's been > 4 hours since last update
         if ($lastChecked->diffInHours($future, false) > 4)
         {
-            echo "Need to update";
             //Update our last time stamp
             $lastApiCall = GoogleTimeStamp::first();
             $lastApiCall->timestamp = Carbon::now()->timestamp;
@@ -96,7 +95,7 @@ class CalendarUpdate extends Command {
                 }
             }
         } else {
-            echo "Not time to update";
+            $this->info('Not time to update');
         }
     }
 
