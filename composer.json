@@ -12,7 +12,7 @@
 	"require-dev": {
 		"way/generators": "~3.0",
 		"barryvdh/laravel-ide-helper": "dev-master",
-		"codeception/codeception":"~2.0",
+		"codeception/codeception":"2.0.12",
 		"barryvdh/laravel-debugbar": "1.x",
 		"codeclimate/php-test-reporter": "dev-master",
 	  	"janhenkgerritsen/codeception-laravel5": "~1.0"
