@@ -21,7 +21,7 @@ class ProcessTweets extends Command {
     protected $description = 'Process Tweets Looking for beers.';
 
     /**
-     * 
+     *
      */
     public function __construct()
     {
