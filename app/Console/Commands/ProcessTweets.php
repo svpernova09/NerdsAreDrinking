@@ -146,7 +146,9 @@ class ProcessTweets extends Command {
 				$status = str_replace('—', '', $status);
 
 				$this->postTweet($status, $tweet->id);
-			}
+			} else {
+                $this->info('We should have tweeted: But there were no tweets');
+            }
 	}
 
 	public function postTweet($status, $tweet_id)
