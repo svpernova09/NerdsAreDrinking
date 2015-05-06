@@ -44,7 +44,7 @@ class ProcessTweets extends Command {
 			if (count($tweets) > 0)
 			{
 				// update the since_id with the latest tweet in $tweets
-				if ($this->argument('test') == 'false') {
+				if (!$this->argument('test')) {
 					$this->updateSince($tweets['0']->id, $nerd->name);
 				}
 			}
@@ -157,7 +157,7 @@ class ProcessTweets extends Command {
 
 		$tweet = new TwitterAPIExchange($this->getSettings());
 
-		if ($this->argument('test') == 'false')
+		if (!$this->argument('test'))
 		{
 			$response = $tweet->setPostfields($postFields)
 			                  ->buildOauth($url, 'POST')
