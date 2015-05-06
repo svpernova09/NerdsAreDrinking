@@ -35,6 +35,8 @@ class ProcessTweets extends Command {
 	 */
 	public function fire()
 	{
+        $this->info('Test: ' . $this->argument('test'));
+        
 		$nerds = $this->getNerds();
 
 		foreach ($nerds as $nerd)
