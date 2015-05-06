@@ -315,13 +315,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/J7mbo/twitter-api-php.git",
-                "reference": "ab76f1c1e6bf83f0a257216cbaf9932b7cc19a3f"
+                "reference": "e576556d8b548327d4aefeff0a9d40fa9a9d552e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/J7mbo/twitter-api-php/zipball/ab76f1c1e6bf83f0a257216cbaf9932b7cc19a3f",
-                "reference": "ab76f1c1e6bf83f0a257216cbaf9932b7cc19a3f",
+                "url": "https://api.github.com/repos/J7mbo/twitter-api-php/zipball/e576556d8b548327d4aefeff0a9d40fa9a9d552e",
+                "reference": "e576556d8b548327d4aefeff0a9d40fa9a9d552e",
                 "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.5.1"
             },
             "type": "library",
             "autoload": {
@@ -346,7 +352,7 @@
                 "php",
                 "twitter"
             ],
-            "time": "2013-10-03 10:04:59"
+            "time": "2015-05-04 14:30:06"
         },
         {
             "name": "jakub-onderka/php-console-color",
