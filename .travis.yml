@@ -7,7 +7,6 @@ php:
 before_script:
   - mysql -e 'create database homestead;'
   - mysql -e "GRANT ALL PRIVILEGES ON homestead.* TO 'homestead'@'%' IDENTIFIED BY 'secret'" -uroot
-  - screen -S server -d -m phantomjs --webdriver=4444
   - cp .env.example .env
   - "composer self-update"
   - "composer install --dev --no-interaction"
@@ -15,4 +14,3 @@ before_script:
   - ./vendor/bin/codecept build
 script:
   - ./vendor/bin/codecept run -vvv
-  
