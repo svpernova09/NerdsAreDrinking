@@ -22,7 +22,7 @@ class CreateNerdsTable extends Migration {
 
 		$insert = ['Brian', 'thirstyrunner'];
 		DB::insert("insert into nerds (name, twitter) values (?, ?)", $insert);
-		$insert = ['Joe', 'joepferguson'];
+		$insert = ['Joe', 'svpernova09'];
 		DB::insert("insert into nerds (name, twitter) values (?, ?)", $insert);
 		$insert = ['Mark', 'markonthebluffs'];
 		DB::insert("insert into nerds (name, twitter) values (?, ?)", $insert);
