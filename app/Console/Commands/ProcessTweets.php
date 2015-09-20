@@ -43,19 +43,21 @@ class ProcessTweets extends Command {
 
         foreach ($nerds as $nerd)
         {
+            $this->info('Processing ' . $nerd->twitter);
             $tweets = $this->getTweets($nerd);
 
             if (count($tweets) > 0)
             {
+                $this->info('Found ' . count($tweets) . ' for ' . $nerd->twitter);
+                foreach ($tweets as $tweet)
+                {
+                    $this->parseTweets($tweet);
+                }
+
                 // update the since_id with the latest tweet in $tweets
                 if (!$this->argument('test')) {
                     $this->updateSince($tweets['0']->id, $nerd->name);
                 }
-            }
-
-            foreach ($tweets as $tweet)
-            {
-                $this->parseTweets($tweet);
             }
         }
     }
@@ -131,15 +133,17 @@ class ProcessTweets extends Command {
 
     public function updateSince($tweet_id, $name)
     {
-        $lastTweet = new LastTweet;
+        $this->info("Updating last tweet for " . $name);
+        $lastTweet = LastTweet::where('name', $name)->first();
         $lastTweet->since_id = $tweet_id;
-        $lastTweet->name = $name;
         $lastTweet->save();
     }
 
     public function parseTweets($tweet)
     {
-        if (strpos($tweet->text, 'Drinking a') !== false &&
+        $this->info('Tweet Text: ' . $tweet->text);
+
+        if (strpos($tweet->text, 'Drinking') !== false &&
             strpos($tweet->source, 'untappd') !== false)
         {
             $user = '@' . $tweet->user->screen_name;
@@ -151,7 +155,7 @@ class ProcessTweets extends Command {
 
             $this->postTweet($status, $tweet->id);
         } else {
-            $this->info('We should have tweeted: But there were no tweets');
+            $this->info('Found Tweets but they didn\'t look like untapped checkins');
         }
     }
 
@@ -160,6 +164,8 @@ class ProcessTweets extends Command {
         $url = 'https://api.twitter.com/1.1/statuses/update.json';
         $postFields['status'] = $status;
         $postFields['in_reply_to_status_id'] = $tweet_id;
+
+        $this->info("Should tweet: " . $status);
 
         $tweet = new TwitterAPIExchange($this->getSettings());
 
