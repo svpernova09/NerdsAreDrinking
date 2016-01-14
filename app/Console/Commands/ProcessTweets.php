@@ -142,20 +142,22 @@ class ProcessTweets extends Command {
     public function parseTweets($tweet)
     {
         $this->info('Tweet Text: ' . $tweet->text);
-
-        if (strpos($tweet->text, 'Drinking') !== false &&
-            strpos($tweet->source, 'untappd') !== false)
+        if (strpos($tweet->text, 'Drinking') !== false ||
+                strpos($tweet->text, 'Enjoying a') !== false)
         {
-            $user = '@' . $tweet->user->screen_name;
-            $status = '#NerdsDrinking RT ' . $user . ' ' . $tweet->text;
-            $regex = "@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?).*$)@";
-            $status =  preg_replace($regex, ' ', $status);
-            $status = str_replace('-', '', $status);
-            $status = str_replace('—', '', $status);
+            if (strpos($tweet->source, 'untappd') !== false)
+            {
+                $user = '@' . $tweet->user->screen_name;
+                $status = '#NerdsDrinking RT ' . $user . ' ' . $tweet->text;
+                $regex = "@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?).*$)@";
+                $status = preg_replace($regex, ' ', $status);
+                $status = str_replace('-', '', $status);
+                $status = str_replace('—', '', $status);
 
-            $this->postTweet($status, $tweet->id);
-        } else {
-            $this->info('Found Tweets but they didn\'t look like untapped checkins');
+                $this->postTweet($status, $tweet->id);
+            } else {
+                $this->info('Found Tweets but they didn\'t look like untapped checkins');
+            }
         }
     }
 
