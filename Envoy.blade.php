@@ -1,4 +1,4 @@
-@servers(['prod' => 'drunk@drunk.nerdsdrinking.com'])
+@servers(['prod' => 'drunk@nerdsdrinking.com'])
 
 @task('deploy:prod', ['on' => 'prod'])
 cd /home/drunk/NerdsAreDrinking
