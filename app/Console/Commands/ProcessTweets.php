@@ -67,9 +67,9 @@ class ProcessTweets extends Command
      */
     protected function getArguments()
     {
-        return array(
-            array('test', InputArgument::OPTIONAL, 'Run in test mode. Does not update database. Does not tweet'),
-        );
+        return [
+            ['test', InputArgument::OPTIONAL, 'Run in test mode. Does not update database. Does not tweet'],
+        ];
     }
 
     /**
@@ -79,9 +79,9 @@ class ProcessTweets extends Command
      */
     protected function getOptions()
     {
-        return array(
+        return [
 //            array('test', 't', InputOption::VALUE_OPTIONAL, 'If present, run test mode', 'false'),
-        );
+        ];
     }
 
     public function getNerds()
@@ -91,12 +91,12 @@ class ProcessTweets extends Command
 
     public function getSettings()
     {
-        $settings = array(
+        $settings = [
             'oauth_access_token' => env('oauth_access_token', ''),
             'oauth_access_token_secret' => env('oauth_access_token_secret', ''),
             'consumer_key' => env('consumer_key', ''),
             'consumer_secret' => env('consumer_secret', ''),
-        );
+        ];
 
         return $settings;
     }
