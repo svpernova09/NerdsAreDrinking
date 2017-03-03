@@ -48,6 +48,7 @@ class ProcessTweets extends Command
 
             if (count($tweets) > 0) {
                 $this->info('Found ' . count($tweets) . ' for ' . $nerd->twitter);
+
                 foreach ($tweets as $tweet) {
                     $this->parseTweets($tweet);
                 }
@@ -124,8 +125,13 @@ class ProcessTweets extends Command
         $response = $twitter->setGetfield($getField)
                             ->buildOauth($url, 'GET')
                             ->performRequest();
+        $result = json_decode($response);
 
-        return json_decode($response);
+        if (isset($result->error)) {
+            return [];
+        }
+
+        return $result;
     }
 
     public function updateSince($tweet_id, $name)

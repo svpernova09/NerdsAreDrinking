@@ -13,7 +13,7 @@
         "j7mbo/twitter-api-php": "dev-master"
     },
     "require-dev": {
-        "laravel/homestead": "~2.1",
+        "laravel/homestead": "^5",
         "codeception/codeception": "~2.0",
         "symfony/dom-crawler": "~3.0",
         "symfony/css-selector": "~3.0"
