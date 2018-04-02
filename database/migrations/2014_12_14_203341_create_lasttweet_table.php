@@ -16,6 +16,7 @@ class CreateLasttweetTable extends Migration
         Schema::create('last_tweets', function (Blueprint $table) {
             $table->increments('id');
             $table->text('since_id');
+            $table->string('name');
             $table->timestamps();
         });
     }

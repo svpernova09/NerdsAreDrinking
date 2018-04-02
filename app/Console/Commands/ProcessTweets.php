@@ -48,7 +48,6 @@ class ProcessTweets extends Command
 
             if (count($tweets) > 0) {
                 $this->info('Found ' . count($tweets) . ' for ' . $nerd->twitter);
-
                 foreach ($tweets as $tweet) {
                     $this->parseTweets($tweet);
                 }
