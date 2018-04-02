@@ -20,11 +20,11 @@ class CreateNerdsTable extends Migration
             $table->timestamps();
         });
 
-        $insert = ['Brian', 'thirstyrunner'];
+        $insert = ['thirstyrunner', 'thirstyrunner'];
         DB::insert("insert into nerds (name, twitter) values (?, ?)", $insert);
-        $insert = ['Joe', 'svpernova09'];
+        $insert = ['svpernova09', 'svpernova09'];
         DB::insert("insert into nerds (name, twitter) values (?, ?)", $insert);
-        $insert = ['Mark', 'markonthebluffs'];
+        $insert = ['markonthebluffs', 'markonthebluffs'];
         DB::insert("insert into nerds (name, twitter) values (?, ?)", $insert);
     }
 

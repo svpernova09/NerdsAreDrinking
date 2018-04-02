@@ -4,8 +4,6 @@ use App\Nerds;
 use App\LastTweet;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use Symfony\Component\Console\Input\InputOption;
-use Symfony\Component\Console\Input\InputArgument;
 use TwitterAPIExchange;
 
 class ProcessTweets extends Command
@@ -16,7 +14,7 @@ class ProcessTweets extends Command
      *
      * @var string
      */
-    protected $signature = 'nerds:process';
+    protected $signature = 'nerds:process {test=false}';
 
     /**4
      * The console command description.
@@ -53,35 +51,11 @@ class ProcessTweets extends Command
                 }
 
                 // update the since_id with the latest tweet in $tweets
-                if (!$this->argument('test')) {
-                    $this->updateSince($tweets['0']->id, $nerd->name);
+                if ($this->argument('test') === 'false') {
+                    $this->updateSince($tweets['0']->id, $nerd->twitter);
                 }
             }
         }
-    }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [
-            ['test', InputArgument::OPTIONAL, 'Run in test mode. Does not update database. Does not tweet'],
-        ];
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-//            array('test', 't', InputOption::VALUE_OPTIONAL, 'If present, run test mode', 'false'),
-        ];
     }
 
     public function getNerds()
@@ -101,10 +75,10 @@ class ProcessTweets extends Command
         return $settings;
     }
 
-    public function getSince($name)
+    public function getSince($screen_name)
     {
         return $since = DB::table('last_tweets')
-                          ->where('name', $name)
+                          ->where('name', $screen_name)
                           ->orderBy('created_at', 'desc')
                           ->first();
     }
@@ -114,7 +88,7 @@ class ProcessTweets extends Command
         $url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
         $getField = '?screen_name=' . $user->twitter;
 
-        $since = $this->getSince($user->name);
+        $since = $this->getSince($user->twitter);
         if (!is_null($since)) {
             $getField .= '&since_id=' . $since->since_id;
         }
@@ -133,10 +107,10 @@ class ProcessTweets extends Command
         return $result;
     }
 
-    public function updateSince($tweet_id, $name)
+    public function updateSince($tweet_id, $screen_name)
     {
-        $this->info("Updating last tweet for " . $name);
-        $lastTweet = LastTweet::where('name', $name)->first();
+        $this->info("Updating last tweet for " . $screen_name);
+        $lastTweet = LastTweet::where('name', $screen_name)->first();
         $lastTweet->since_id = $tweet_id;
         $lastTweet->save();
     }
@@ -171,13 +145,13 @@ class ProcessTweets extends Command
 
         $tweet = new TwitterAPIExchange($this->getSettings());
 
-        if (!$this->argument('test')) {
+        if ($this->argument('test') === 'false') {
             $response = $tweet->setPostfields($postFields)
                               ->buildOauth($url, 'POST')
                               ->performRequest();
         }
 
-        if ($this->argument('test')) {
+        if ($this->argument('test') === 'test') {
             $this->info('We should have tweeted: ' . $status);
         }
     }

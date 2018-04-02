@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\ProcessTweets::class,
+        \App\Console\Commands\ReadOurTweets::class,
     ];
 
     /**
