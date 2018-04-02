@@ -1,12 +1,12 @@
 <?php namespace App\Console\Commands;
 
-use App\Models\Nerds;
-use TwitterAPIExchange;
-use App\Models\LastTweet;
+use App\Nerds;
+use App\LastTweet;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use TwitterAPIExchange;
 
 class ProcessTweets extends Command
 {
@@ -16,7 +16,7 @@ class ProcessTweets extends Command
      *
      * @var string
      */
-    protected $name = 'nerds:process';
+    protected $signature = 'nerds:process';
 
     /**4
      * The console command description.
@@ -38,7 +38,7 @@ class ProcessTweets extends Command
      *
      * @return mixed
      */
-    public function fire()
+    public function handle()
     {
         $nerds = $this->getNerds();
 
