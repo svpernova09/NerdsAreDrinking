@@ -44,15 +44,17 @@ class ProcessTweets extends Command
             $this->info('Processing ' . $nerd->twitter);
             $tweets = $this->getTweets($nerd);
 
-            if (count($tweets) > 0) {
-                $this->info('Found ' . count($tweets) . ' for ' . $nerd->twitter);
-                foreach ($tweets as $tweet) {
-                    $this->parseTweets($tweet);
-                }
+            if (is_array($tweets)) {
+                if (count($tweets) > 0) {
+                    $this->info('Found ' . count($tweets) . ' for ' . $nerd->twitter);
+                    foreach ($tweets as $tweet) {
+                        $this->parseTweets($tweet);
+                    }
 
-                // update the since_id with the latest tweet in $tweets
-                if ($this->argument('test') === 'false') {
-                    $this->updateSince($tweets['0']->id, $nerd->twitter);
+                    // update the since_id with the latest tweet in $tweets
+                    if ($this->argument('test') === 'false') {
+                        $this->updateSince($tweets['0']->id, $nerd->twitter);
+                    }
                 }
             }
         }
