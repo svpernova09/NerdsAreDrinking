@@ -1,7 +1,5 @@
 #!/bin/sh
-#mysql -u homestead -psecret -e "GRANT ALL PRIVILEGES ON homestead.* TO 'travis'@'%' IDENTIFIED BY ''"
-/usr/local/bin/composer self-update
-echo "" >> /home/vagrant/.bashrc
-echo "PATH=$PATH:/home/vagrant/nerdsaredrinking/vendor/bin" >> /home/vagrant/.bashrc
-echo "export PATH" >> /home/vagrant/.bashrc
-echo Done!
+
+# If you would like to do some extra provisioning you may
+# add any commands you wish to this file and they will
+# be run after the Homestead machine is provisioned.
