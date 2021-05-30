@@ -147,11 +147,11 @@ class ProcessTweets extends Command
 
         $tweet = new TwitterAPIExchange($this->getSettings());
 
-        if ($this->argument('test') === 'false') {
-            $response = $tweet->setPostfields($postFields)
-                              ->buildOauth($url, 'POST')
-                              ->performRequest();
-        }
+//        if ($this->argument('test') === 'false') {
+//            $response = $tweet->setPostfields($postFields)
+//                              ->buildOauth($url, 'POST')
+//                              ->performRequest();
+//        }
 
         if ($this->argument('test') === 'test') {
             $this->info('We should have tweeted: ' . $status);
